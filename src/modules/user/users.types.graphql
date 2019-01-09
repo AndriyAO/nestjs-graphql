@@ -1,0 +1,80 @@
+scalar Upload
+
+type User {
+  id: ID
+  email: String
+  password: String
+  profile: Profile
+}
+
+type Profile {
+  id: ID
+  firstName: String
+  lastName: String
+  phone: String
+  address: String
+  user: User
+  images: [Image]
+}
+
+type Image {
+  id: ID
+  name: String
+  url: String
+  status: String
+  profile: Profile
+}
+
+input UserInput {
+  id: ID
+  email: String
+  password: String
+  profile: ID
+}
+
+input ProfileInput {
+  id: ID
+  firstName: String
+  lastName: String
+  phone: String
+  address: String
+  user: ID
+  images: [ID]
+}
+
+input ImageInput {
+  id: ID
+  name: String
+  url: String
+  status: String
+  profile: ID
+}
+
+type Query {
+  getUsers: [User]
+  getOneUser(id: ID!): User
+
+  profiles: [Profile]
+
+  allImages: [Image]
+
+  login(user: UserInput): String
+  register(user: UserInput): String
+
+}
+
+type Mutation {
+  deleteUser(id: ID): User
+  updateUser(user: UserInput): User
+  insertUsers(input: UserInput): User
+
+  deleteProfile(id: ID): User
+  insrertProfile(input: ProfileInput): Profile
+  updateProfile(id: ID, profile: ProfileInput): Profile
+
+  insertImage(input: ImageInput): Image
+  deleteImage(id: ID): Image
+
+  
+  uploadFile(file: Upload!): Boolean
+}
