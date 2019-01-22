@@ -1,6 +1,6 @@
-import { Profile } from "../profile.entity";
+import { Profile } from '../profile.entity';
 
 export interface IProfileService {
-    findAll():Promise<Profile[]>;
-    insert(profile: Profile): Promise<Profile>
+  findAll(): Promise<Profile[]>;
+  insert(profile: Profile): Promise<Profile>;
 }

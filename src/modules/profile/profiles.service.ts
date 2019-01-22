@@ -54,3 +54,6 @@ export class ProfileService implements IProfileService {
     }
   }
 }
+export interface Hey {
+  name: String;
+}

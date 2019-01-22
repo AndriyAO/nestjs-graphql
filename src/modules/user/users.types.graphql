@@ -55,6 +55,7 @@ type Query {
   getOneUser(id: ID!): User
 
   profiles: [Profile]
+  find(id: ID): Profile
 
   allImages: [Image]
 
@@ -76,5 +77,5 @@ type Mutation {
   deleteImage(id: ID): Image
 
   
-  uploadFile(file: Upload!): Boolean
+  singleUpload(file: Upload!): Image
 }

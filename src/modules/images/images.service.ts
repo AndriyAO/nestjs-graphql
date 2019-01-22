@@ -27,7 +27,7 @@ export class ImagesService {
       return err;
     }
   }
-
+  
   async delete(id: number): Promise<Images> {
     try {
       const data = await this.imagesRepository.findOne(
