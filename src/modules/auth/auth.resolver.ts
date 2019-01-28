@@ -42,21 +42,21 @@ export class AuthResolver {
   @Query()
   async register(@Args('user') body: User): Promise<String> {
     try {
-    if (!(body && body.email && body.password)) {
-      return 'Missing email or password.';
+      if (!(body && body.email && body.password)) {
+        return 'Missing email or password.';
+      }
+
+      let user = await this.userService.findOne({ email: body.email });
+
+      if (user) {
+        return 'Username exists';
+      } else {
+        user = await this.userService.insert(body);
+      }
+
+      return await this.authService.createToken(user.id).accessToken;
+    } catch (err) {
+      return err;
     }
-
-    let user = await this.userService.findOne({email: body.email});
-
-    if (user) {
-      return 'Username exists';
-    } else {
-      user = await this.userService.insert(body);
-    }
-
-    return await this.authService.createToken(user.id).accessToken;
-} catch (err) {
-  return err;
-}
   }
 }

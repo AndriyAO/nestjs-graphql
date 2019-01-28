@@ -10,7 +10,7 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Query()
-  @UseGuards(GqlAuthGuard)
+  //@UseGuards(GqlAuthGuard)
   async getUsers() {
     return await this.userService.findAll();
   }

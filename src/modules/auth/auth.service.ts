@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    @Inject(forwardRef(() => UserService))
+    private readonly userService: UserService,
+  ) {}
 
   createToken(userId: number, ttl?: number) {
     const user: JwtPayload = { userId };
@@ -23,7 +26,7 @@ export class AuthService {
     password: string;
   }): Promise<boolean> {
     const user = await this.userService.findOne(payload);
-    console.log(user);
+    //console.log(user);
     return !!user;
   }
 }

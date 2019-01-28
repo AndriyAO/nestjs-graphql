@@ -12,7 +12,7 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: { port: 3001 },
   });
-  //app.setGlobalPrefix('api/v1');
+  app.setGlobalPrefix('api/v1');
   await app.listen(3000);
 }
 bootstrap();

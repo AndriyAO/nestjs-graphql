@@ -1,4 +1,4 @@
-import { Module, MiddlewareConsumer, RequestMethod, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { UserModule } from './modules/user/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -13,6 +13,7 @@ import { ImagesModule } from './modules/images/images.module';
     ImagesModule,
     AuthModule,
     TypeOrmModule.forRoot({
+      name: 'default',
       type: 'postgres',
       host: 'localhost',
       port: 5432,
@@ -27,5 +28,6 @@ import { ImagesModule } from './modules/images/images.module';
       typePaths: ['./**/*.graphql'],
     }),
   ],
+  exports: [UserModule],
 })
 export class AppModule {}

@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
 import { IProfile } from './interface/profile.interface';
 import { User } from '../user/user.entity';
 import { Images } from '../images/images.entity';
@@ -26,5 +33,4 @@ export class Profile implements IProfile {
 
   @OneToMany(type => Images, images => images.profile)
   public images: Images[];
-
 }

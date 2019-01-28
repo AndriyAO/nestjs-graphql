@@ -11,11 +11,11 @@ import { Profile } from '../profile/profile.entity';
 import * as bcrypt from 'bcrypt';
 
 @Entity()
-export class User implements IUser {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'text', unique: true })
+  @Column({ type: 'text'})
   public email: string;
 
   @Column({ type: 'text' })

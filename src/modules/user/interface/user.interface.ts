@@ -5,4 +5,6 @@ export interface IUser {
   email: string;
   password: string;
   profile?: Profile;
+  hashsPassword(): void;
+  compareHash(string): boolean;
 }

@@ -1,3 +1,1 @@
-export class IProfileResolver {
-    
-}
+export class IProfileResolver {}
