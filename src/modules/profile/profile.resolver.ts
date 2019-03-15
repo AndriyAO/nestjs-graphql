@@ -1,5 +1,6 @@
-import { ProfileService } from './profiles.service';
 import { Mutation, Args, Resolver, Query } from '@nestjs/graphql';
+
+import { ProfileService } from './profiles.service';
 import { Profile } from './profile.entity';
 import { IProfile } from './interface/profile.interface';
 
@@ -8,12 +9,17 @@ export class ProfileResolver {
   constructor(private readonly profileService: ProfileService) {}
 
   @Query()
-  async getPtofiles() {
+  async getProfiles() {
     return await this.profileService.findAll();
   }
 
+  @Query()
+  async getProfile(@Args('id') profileId: number) {
+    return await this.profileService.findOne(profileId);
+  }
+
   @Mutation()
-  async getProfile(@Args('profile') profile: Profile) {
+  async insertProfile(@Args('profile') profile: IProfile) {
     return await this.profileService.insert(profile);
   }
 
@@ -27,7 +33,6 @@ export class ProfileResolver {
     @Args('id') profileId: number,
     @Args('profile') profile: IProfile,
   ) {
-    //console.log(profile);
     return await this.profileService.update(profileId, profile);
   }
 }

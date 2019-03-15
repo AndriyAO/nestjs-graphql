@@ -22,7 +22,15 @@ export class ProfileService implements IProfileService {
     }
   }
 
-  async insert(profile: Profile): Promise<Profile> {
+  async findOne(profileId: number) {
+    try {
+      return await this.profileRepository.findOne({ id: profileId });
+    } catch (err) {
+      return err;
+    }
+  }
+
+  async insert(profile: IProfile): Promise<Profile> {
     try {
       const data = this.profileRepository.create(profile);
       return await this.profileRepository.save(data, { reload: true });

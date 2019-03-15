@@ -25,6 +25,6 @@ type Query {
 
 type Mutation {
   deleteProfile(id: ID): User
-  insrertProfile(profile: ProfileInput): Profile
+  insertProfile(profile: ProfileInput): Profile
   updateProfile(id: ID, profile: ProfileInput): Profile
 }
