@@ -1,0 +1,30 @@
+type Profile {
+  id: ID
+  firstName: String
+  lastName: String
+  phone: String
+  address: String
+  user: User
+  images: [Image]
+}
+
+input ProfileInput {
+  id: ID
+  firstName: String
+  lastName: String
+  phone: String
+  address: String
+  user: ID
+  images: [ID]
+}
+
+type Query {
+  getProfiles: [Profile]
+  getProfile(id: ID): Profile
+}
+
+type Mutation {
+  deleteProfile(id: ID): User
+  insrertProfile(profile: ProfileInput): Profile
+  updateProfile(id: ID, profile: ProfileInput): Profile
+}

@@ -34,10 +34,9 @@ export class ProfileService implements IProfileService {
   async delete(id: number): Promise<Profile> {
     try {
       const data = await this.profileRepository.findOne(
-        { id: id },
+        { id },
         { relations: ['user'] },
       );
-      //console.log(id, data);
       await this.profileRepository.delete(id);
       return data;
     } catch (err) {
@@ -46,14 +45,11 @@ export class ProfileService implements IProfileService {
   }
   async update(profileId: number, newProfile: IProfile): Promise<Profile> {
     try {
-      let profile = await this.profileRepository.findOne(profileId);
+      const profile = await this.profileRepository.findOne(profileId);
       Object.assign(profile, newProfile);
       return await this.profileRepository.save(profile, { reload: true });
     } catch (err) {
       return err;
     }
   }
-}
-export interface Hey {
-  name: String;
 }

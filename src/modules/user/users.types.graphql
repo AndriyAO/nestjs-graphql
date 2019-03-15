@@ -7,16 +7,6 @@ type User {
   profile: Profile
 }
 
-type Profile {
-  id: ID
-  firstName: String
-  lastName: String
-  phone: String
-  address: String
-  user: User
-  images: [Image]
-}
-
 type Image {
   id: ID
   name: String
@@ -32,16 +22,6 @@ input UserInput {
   profile: ID
 }
 
-input ProfileInput {
-  id: ID
-  firstName: String
-  lastName: String
-  phone: String
-  address: String
-  user: ID
-  images: [ID]
-}
-
 input ImageInput {
   id: ID
   name: String
@@ -54,14 +34,10 @@ type Query {
   getUsers: [User]
   getOneUser(id: ID!): User
 
-  profiles: [Profile]
-  find(id: ID): Profile
-
   allImages: [Image]
 
   login(user: UserInput): String
   register(user: UserInput): String
-
 }
 
 type Mutation {
@@ -69,13 +45,8 @@ type Mutation {
   updateUser(user: UserInput): User
   insertUsers(input: UserInput): User
 
-  deleteProfile(id: ID): User
-  insrertProfile(input: ProfileInput): Profile
-  updateProfile(id: ID, profile: ProfileInput): Profile
-
   insertImage(input: ImageInput): Image
   deleteImage(id: ID): Image
 
-  
   singleUpload(file: Upload!): Image
 }

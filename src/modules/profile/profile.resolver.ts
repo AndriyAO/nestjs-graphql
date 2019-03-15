@@ -8,12 +8,12 @@ export class ProfileResolver {
   constructor(private readonly profileService: ProfileService) {}
 
   @Query()
-  async profiles() {
+  async getPtofiles() {
     return await this.profileService.findAll();
   }
 
   @Mutation()
-  async insrertProfile(@Args('input') profile: Profile) {
+  async getProfile(@Args('profile') profile: Profile) {
     return await this.profileService.insert(profile);
   }
 
